@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📊 Matemática Financeira - Guia Completo de Estudos</title>
+<script>
+  MathJax = { 
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #2c3e50;
+    line-height: 1.8;
+    min-height: 100vh;
+  }
+  header {
+    background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(52,73,94,0.7) 100%);
+    color: white;
+    padding: 50px 20px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><text x="10" y="50" font-size="40" fill="rgba(255,255,255,0.05)">📈</text></svg>');
+    opacity: 0.3;
+  }
+  header h1 { font-size: 2.8em; margin-bottom: 15px; position: relative; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+  header p { font-size: 1.2em; opacity: 0.95; position: relative; }
+  header .badge {
+    display: inline-block;
+    background: #f39c12;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin-top: 15px;
+    font-weight: bold;
+    position: relative;
+  }
+  .container {
+    max-width: 1300px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 30px;
+  }
+  nav {
+    background: white;
+    border-radius: 16px;
+    padding: 25px;
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  }
+  nav h3 { 
+    color: #667eea; 
+    margin-bottom: 20px; 
+    border-bottom: 3px solid #667eea; 
+    padding-bottom: 10px; 
+    font-size: 1.2em;
+  }
+  nav ul { list-style: none; }
+  nav li { margin: 6px 0; }
+  nav a {
+    color: #34495e;
+    text-decoration: none;
+    display: block;
+    padding: 10px 14px;
+    border-radius: 8px;
+    transition: all 0.3s;
+    font-size: 0.95em;
+    border-left: 3px solid transparent;
+  }
+  nav a:hover { 
+    background: linear-gradient(90deg, #667eea, #764ba2); 
+    color: white; 
+    transform: translateX(5px);
+    border-left-color: #f39c12;
+  }
+  main { display: flex; flex-direction: column; gap: 30px; }
+  .card {
+    background: white;
+    border-radius: 16px;
+    padding: 35px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+  .card:hover { transform: translateY(-2px); }
+  .card h2 {
+    color: #2c3e50;
+    border-left: 6px solid #667eea;
+    padding-left: 18px;
+    margin-bottom: 25px;
+    font-size: 2em;
+    background: linear-gradient(90deg, #f8f9ff, white);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 8px;
+  }
+  .card h3 {
+    color: #667eea;
+    margin: 30px 0 15px;
+    font-size: 1.5em;
+    border-bottom: 2px dashed #e0e0e0;
+    padding-bottom: 8px;
+  }
+  .card h4 {
+    color: #e67e22;
+    margin: 20px 0 10px;
+    font-size: 1.2em;
+  }
+  .card p { margin: 10px 0; text-align: justify; }
+  .formula {
+    background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+    border-left: 5px solid #f39c12;
+    padding: 20px 25px;
+    margin: 20px 0;
+    border-radius: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1em;
+    overflow-x: auto;
+    box-shadow: 0 4px 15px rgba(243, 156, 18, 0.15);
+  }
+  .formula strong { color: #d35400; }
+  .conceito {
+    background: linear-gradient(135deg, #e8f4fd 0%, #d6eaf8 100%);
+    border-left: 5px solid #3498db;
+    padding: 20px 25px;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.15);
+  }
+  .conceito strong { color: #1e88e5; }
+  .exemplo {
+    background: linear-gradient(135deg, #e8f8f5 0%, #d1f2eb 100%);
+    border-left: 5px solid #1abc9c;
+    padding: 20px 25px;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(26, 188, 156, 0.15);
+  }
+  .exemplo strong { color: #16a085; }
+  .exemplo .passo {
+    background: white;
+    padding: 10px 15px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border-left: 3px solid #1abc9c;
+    font-family: 'Courier New', monospace;
+  }
+  .alerta {
+    background: linear-gradient(135deg, #fdecea 0%, #fadbd8 100%);
+    border-left: 5px solid #e74c3c;
+    padding: 20px 25px;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.15);
+  }
+  .alerta strong { color: #c0392b; }
+  .dica {
+    background: linear-gradient(135deg, #fef5e7 0%, #fdebd0 100%);
+    border-left: 5px solid #f39c12;
+    padding: 20px 25px;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(243, 156, 18, 0.15);
+  }
+  .dica strong { color: #d35400; }
+  .atencao {
+    background: linear-gradient(135deg, #f4ecf7 0%, #e8daef 100%);
+    border-left: 5px solid #8e44ad;
+    padding: 20px 25px;
+    margin: 20px 0;
+    border-radius: 10px;
+  }
+  .atencao strong { color: #6c3483; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  }
+  th { 
+    background: linear-gradient(135deg, #667eea, #764ba2); 
+    color: white; 
+    padding: 14px; 
+    text-align: left;
+    font-weight: 600;
+  }
+  td { padding: 12px 14px; border-bottom: 1px solid #ecf0f1; }
+  tr:hover { background: #f8f9ff; }
+  tr:last-child td { border-bottom: none; }
+  ul, ol { margin-left: 25px; margin-top: 10px; }
+  li { margin: 8px 0; }
+  .tag {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.8em;
+    margin-right: 5px;
+    font-weight: bold;
+  }
+  .tag-verde { background: linear-gradient(135deg, #1abc9c, #16a085); }
+  .tag-vermelho { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+  .tag-laranja { background: linear-gradient(135deg, #f39c12, #d35400); }
+  .fluxo {
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Courier New', monospace;
+    margin: 15px 0;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .resumo-box {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 25px 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+  .resumo-box h3 { color: #f39c12; border-bottom: 2px solid #f39c12; }
+  .resumo-box .formula {
+    background: rgba(255,255,255,0.1);
+    border-left-color: #f39c12;
+    color: white;
+  }
+  .numero-questao {
+    display: inline-block;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  .topo-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    margin-top: 20px;
+    font-weight: bold;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  }
+  .topo-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6); }
+  .emoji-grande { font-size: 1.5em; margin-right: 8px; }
+  .comparacao {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 20px 0;
+  }
+  .comparacao > div {
+    padding: 15px;
+    border-radius: 10px;
+  }
+  .comparacao .simples { background: #e8f4fd; border: 2px solid #3498db; }
+  .comparacao .composto { background: #e8f8f5; border: 2px solid #1abc9c; }
+  @media (max-width: 900px) {
+    .container { grid-template-columns: 1fr; }
+    nav { position: static; }
+    header h1 { font-size: 2em; }
+    .comparacao { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📊 Matemática Financeira Aplicada</h1>
+  <p>Guia Completo e Didático — Prof. Rildo E Silva | CCA0153</p>
+  <div class="badge">🎯 Preparação para Avaliação 1 — 2º Semestre 2025</div>
+</header>
+
+<div class="container">
+
+  <nav>
+    <h3>📑 Sumário</h3>
+    <ul>
+      <li><a href="#u1">📘 I - Fundamentos</a></li>
+      <li><a href="#u2">📗 II - Juros Simples</a></li>
+      <li><a href="#u3">📙 III - Descontos Simples</a></li>
+      <li><a href="#u4">📕 IV - Juros Compostos</a></li>
+      <li><a href="#u5">📔 V - Taxa Real de Juros</a></li>
+      <li><a href="#resumo">🎯 Resumo das Fórmulas</a></li>
+      <li><a href="#prova">📝 Resolução da Prova</a></li>
+      <li><a href="#dicas">💡 Dicas Finais</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- ============ UNIDADE I ============ -->
+    <section class="card" id="u1">
+      <h2>📘 Unidade I — Fundamentos</h2>
+
+      <h3>1. O Capital e o Juro</h3>
+      <div class="conceito">
+        <span class="emoji-grande">💰</span><strong>Capital (C, PV ou P):</strong> é o valor em dinheiro que você empresta, aplica ou investe em um determinado momento. É o "ponto de partida" de qualquer operação financeira. Também chamado de <em>principal</em>, <em>valor presente</em> ou <em>valor atual</em>.<br><br>
+        <span class="emoji-grande">💵</span><strong>Juro (J):</strong> é o "preço" pago pelo uso do dinheiro de outra pessoa durante um período. É a remuneração do capital. Quem empresta <strong>recebe</strong> juros (ganho); quem toma emprestado <strong>paga</strong> juros (custo).
+      </div>
+
+      <div class="exemplo">
+        <strong>📌 Exemplo:</strong> Você empresta R$ 1.000 para um amigo. Esses R$ 1.000 são o <strong>capital</strong>. Ao devolver, ele paga R$ 100 a mais. Esses R$ 100 são os <strong>juros</strong>.
+      </div>
+
+      <div class="dica">
+        💡 <strong>Ideia-chave:</strong> O juro existe por causa de 3 fatores: <strong>tempo</strong>, <strong>inflação</strong> e <strong>risco</strong>.
+      </div>
+
+      <h3>2. Relações Básicas</h3>
+      <p>As 4 grandezas fundamentais da matemática financeira:</p>
+      <table>
+        <tr><th>Grandeza</th><th>Símbolo</th><th>Significado</th></tr>
+        <tr><td>Capital</td><td>C ou PV</td><td>Valor inicial</td></tr>
+        <tr><td>Juros</td><td>J</td><td>Remuneração</td></tr>
+        <tr><td>Taxa</td><td>i</td><td>Percentual por período</td></tr>
+        <tr><td>Tempo</td><td>n</td><td>Prazo da operação</td></tr>
+        <tr><td>Montante</td><td>M ou FV</td><td>Valor final</td></tr>
+      </table>
+
+      <div class="formula">
+        <strong>Montante:</strong> M = C + J<br>
+        <strong>Taxa (unitária):</strong> i = J / C<br>
+        <strong>Taxa (percentual):</strong> i% = (J / C) × 100<br>
+        <strong>Juro:</strong> J = M - C
+      </div>
+
+      <div class="exemplo">
+        <strong>📌 Exemplo:</strong> Apliquei R$ 2.000 e resgatei R$ 2.400.
+        <div class="passo">J = 2.400 - 2.000 = R$ 400</div>
+        <div class="passo">i = 400 / 2.000 = 0,20 = 20% (no período)</div>
+      </div>
+
+      <h3>3. Regimes de Capitalização</h3>
+      <p>É a forma como os juros são calculados ao longo do tempo.</p>
+
+      <div class="comparacao">
+        <div class="simples">
+          <h4>🔹 Juros Simples</h4>
+          <ul>
+            <li>Juros incidem <strong>sempre sobre o capital inicial</strong></li>
+            <li>Juros de cada período são <strong>constantes</strong></li>
+            <li>Crescimento <strong>linear</strong></li>
+          </ul>
+        </div>
+        <div class="composto">
+          <h4>🔹 Juros Compostos</h4>
+          <ul>
+            <li>Juros incidem sobre o <strong>montante anterior</strong></li>
+            <li>"Juros sobre juros"</li>
+            <li>Crescimento <strong>exponencial</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <table>
+        <tr><th>Período</th><th>Juros Simples</th><th>Montante Simples</th><th>Juros Compostos</th><th>Montante Composto</th></tr>
+        <tr><td>1</td><td>100</td><td>1.100</td><td>100</td><td>1.100</td></tr>
+        <tr><td>2</td><td>100</td><td>1.200</td><td>110</td><td>1.210</td></tr>
+        <tr><td>3</td><td>100</td><td>1.300</td><td>121</td><td>1.331</td></tr>
+        <tr><td>4</td><td>100</td><td>1.400</td><td>133,10</td><td>1.464,10</td></tr>
+      </table>
+      <p><em>C = 1.000, i = 10% a.m.</em></p>
+
+      <div class="alerta">
+        ⚠️ <strong>Regra de ouro:</strong> Se o problema não disser, use <strong>juros compostos</strong> (é o padrão do mercado financeiro).
+      </div>
+
+      <h3>4. Fluxo de Caixa de uma Operação</h3>
+      <div class="conceito">
+        É a <strong>representação gráfica</strong> das entradas e saídas de dinheiro ao longo do tempo.
+      </div>
+
+      <p><strong>Convenções:</strong></p>
+      <ul>
+        <li>📈 <strong>Seta para cima (+):</strong> entrada de dinheiro (recebimento)</li>
+        <li>📉 <strong>Seta para baixo (–):</strong> saída de dinheiro (pagamento)</li>
+        <li>⏱️ <strong>Linha horizontal:</strong> eixo do tempo</li>
+        <li>🎯 <strong>Ponto 0:</strong> momento atual ("hoje")</li>
+      </ul>
+
+      <div class="fluxo">         4.000     4.000     4.000
+          ↑         ↑         ↑
+──────────┼─────────┼─────────┼────────→ tempo
+          0         1         2         3
+          ↓
+        10.000</div>
+
+      <div class="dica">
+        💡 <strong>Dica de prova:</strong> Sempre desenhe o fluxo de caixa antes de resolver. Ele evita 90% dos erros!
+      </div>
+    </section>
+
+    <!-- ============ UNIDADE II ============ -->
+    <section class="card" id="u2">
+      <h2>📗 Unidade II — Juros Simples</h2>
+
+      <h3>1. Fórmula dos Juros e do Montante</h3>
+      <div class="formula">
+        <strong>J = C × i × n</strong>          (calcula só os juros)<br>
+        <strong>M = C × (1 + i × n)</strong>    (calcula o montante direto)
+      </div>
+
+      <p><strong>Onde:</strong></p>
+      <ul>
+        <li>C = capital inicial</li>
+        <li>i = taxa (sempre na forma <strong>unitária</strong>, ex: 5% = 0,05)</li>
+        <li>n = prazo (<strong>na mesma unidade da taxa</strong>)</li>
+      </ul>
+
+      <div class="exemplo">
+        <strong>📌 Questão 1 da prova:</strong>
+        <p>Capital 1: R$ 4.200 a 7% a.m. | Capital 2: R$ 5.250 a 3,5% a.m.</p>
+        <div class="passo">M₁ = M₂</div>
+        <div class="passo">4.200 × (1 + 0,07n) = 5.250 × (1 + 0,035n)</div>
+        <div class="passo">4.200 + 294n = 5.250 + 183,75n</div>
+        <div class="passo">110,25n = 1.050 → n = 9,52 meses</div>
+        <div class="passo">Parte inteira: 9 meses | Fracionária: 0,52 × 30 = 15,6 → 16 dias</div>
+        <p><strong>✅ Resposta: 9 meses e 16 dias</strong></p>
+      </div>
+
+      <h3>2. Taxas Equivalentes (Juros Simples)</h3>
+      <div class="conceito">
+        Em juros simples, taxas equivalentes são <strong>proporcionais</strong> aos seus prazos.
+      </div>
+      <div class="formula">
+        <strong>i₁ / t₁ = i₂ / t₂</strong>
+      </div>
+
+      <div class="exemplo">
+        <strong>📌 Exemplo:</strong> 12% ao ano equivale a:
+        <div class="passo">Ao mês: 12% / 12 = 1% a.m.</div>
+        <div class="passo">Ao dia (ano comercial): 12% / 360 = 0,0333% a.d.</div>
+        <div class="passo">Ao dia (ano exato): 12% / 365 = 0,0329% a.d.</div>
+      </div>
+
+      <div class="alerta">
+        ⚠️ <strong>ATENÇÃO!</strong> Em juros compostos, taxa equivalente <strong>NÃO é proporcional</strong>. Usa-se: i_eq = (1+i)^(t_eq/t) - 1
+      </div>
+
+      <h3>3. Juro Exato e Juro Comercial</h3>
+      <table>
+        <tr><th>Tipo</th><th>Ano</th><th>Mês</th><th>Quando usar</th></tr>
+        <tr><td><strong>Comercial</strong></td><td>360 dias</td><td>30 dias</td><td>Operações bancárias (padrão)</td></tr>
+        <tr><td><strong>Exato</strong></td><td>365 dias</td><td>Dias reais</td><td>Cálculos precisos, BACEN</td></tr>
+      </table>
+
+      <div class="formula">
+        <strong>J_comercial = C × i × (dias / 360)</strong><br>
+        <strong>J_exato = C × i × (dias / 365)</strong>
+      </div>
+
+      <div class="exemplo">
+        <strong>📌 Exemplo:</strong> Juros sobre R$ 10.000 a 18% a.a. por 60 dias.
+        <div class="passo">Comercial: 10.000 × 0,18 × (60/360) = R$ 300</div>
+        <div class="passo">Exato: 10.000 × 0,18 × (60/365) = R$ 295,89</div>
+      </div>
+
+      <div class="dica">
+        💡 O juro comercial é <strong>sempre maior</strong> que o exato (denominador menor).
+      </div>
+
+      <h3>4. Operações com Hot Money</h3>
+      <div class="conceito">
+        <span class="emoji-grande">🔥</span><strong>Hot Money</strong> são operações de <strong>curtíssimo prazo</strong> (geralmente overnight) que os bancos fazem para cobrir <strong>saldos devedores</strong> em conta corrente.
+      </div>
+
+      <p><strong>Características:</strong></p>
+      <ul>
+        <li>Taxas <strong>muito elevadas</strong></li>
+        <li>Prazo: 1 dia ou poucos dias</li>
+        <li>Incidência de <strong>IOF diário</strong> (0,0041% a.d.)</li>
+        <li>Regime: juros simples</li>
+      </ul>
+
+      <div class="formula">
+        <strong>J_total = Σ (C × i_k × n_k) + IOF</strong><br>
+        <strong>IOF = C × 0,0041% × n_dias</strong>
+      </div>
+
+      <div class="exemplo">
+        <strong>📌 Questão 2 da prova:</strong>
+        <p>Saldo devedor: 3 dias a 3,5% a.m. + 2 dias a 4,5% a.m. + IOF 0,0041% a.d.</p>
+        <div class="passo">a) i = (3,5% × 3 + 4,5% × 2) / 30 = 19,5 / 30 = 0,65%</div>
+        <div class="passo">b) IOF = 0,0041% × 5 = 0,0205% → Taxa total = 0,6705%</div>
+        <div class="passo">c) (1,006705)^(30/5) - 1 ≈ 4,10% a.m.</div>
+      </div>
+
+      <h3>5. Valor Nominal e Valor Atual a Juros Simples</h3>
+      <div class="conceito">
+        <strong>Valor Nominal (N):</strong> valor de um título na data de vencimento.<br>
+        <strong>Valor Atual (A ou PV):</strong> valor equivalente numa data anterior ao vencimento.
+      </div>
+      <div class="formula">
+        <strong>A = N / (1 + i × n)</strong>
+      </div>
+
+      <div class="exemplo">
+        <strong>📌 Exemplo:</strong> Título de R$ 5.000 vence em 3 meses. Taxa = 4% a.m.
+        <div class="passo">A = 5.000 / (1 + 0,04 × 3) = 5.000 / 1,12 = R$ 4.464,29</div>
+      </div>
+    </section>
+
+    <!-- ============ UNIDADE III ============ -->
+    <section class="card" id="u3">
+      <h2>📙 Unidade III — Descontos Simples</h2>
+
+      <h3>1. Desconto Comercial ou Bancário ("por fora")</h3>
+      <div class="conceito">
+        É o desconto calculado <strong>sobre o valor nominal</strong> do título, não sobre o valor atual. É o método usado pelos bancos no Brasil.
+      </div>
+      <div class="formula">
+        <strong>D = N × d × n</strong>           (valor do desconto)<br>
+        <strong>A = N - D</strong>               (valor atual/líquido)<br>
+        <strong>A = N × (1 - d × n)</strong>     (fórmula direta)
+      </div>
+
+      <p><strong>Onde:</strong></p>
+      <ul>
+        <li>N = valor nominal do título</li>
+        <li>d = taxa de desconto (mensal)</li>
+        <li>n = prazo até o vencimento</li>
+      </ul>
+
+      <div class="exemplo">
+        <strong>📌 Exemplo:</strong> Duplicata de R$ 10.000, vencimento em 60 dias, taxa 3% a.m.
+        <div class="passo">D = 10.000 × 0,03 × (60/30) = R$ 600</div>
+        <div class="passo">A = 10.000 - 600 = R$ 9.400</div>
+      </div>
+
+      <h3>2. Relação entre Taxa de Desconto (d) e Taxa de Juros (i)</h3>
+      <div class="atencao">
+        ⚠️ Essas duas taxas <strong>NÃO são iguais</strong>! A taxa de juros efetiva é <strong>sempre maior</strong> que a taxa de desconto, porque o dinheiro efetivamente recebido (A) é menor que o nominal (N).
+      </div>
+
+      <div class="formula">
+        <strong>i = d / (1 - d × n)</strong><br>
+        <strong>d = i / (1 + i × n)</strong>
+      </div>
+
+      <div class="exemplo">
+        <strong>📌 Exemplo:</strong> Desconto de 3% a.m. por 2 meses. Qual a taxa de juros equivalente?
+        <div class="passo">i = 0,03 / (1 - 0,03 × 2) = 0,03 / 0,94 = 3,19% a.m.</div>
+      </div>
+
+      <div class="alerta">
+        🚨 <strong>Pegadinha clássica de prova!</strong> O banco anuncia "desconto de 3% a.m.", mas o custo real para o cliente é 3,19% a.m.
+      </div>
+
+      <h3>3. Operações com um Conjunto de Títulos</h3>
+      <div class="conceito">
+        Na prática, empresas descontam <strong>vários títulos ao mesmo tempo</strong>. O cálculo considera:
+      </div>
+      <ol>
+        <li><strong>Desconto comercial</strong> de cada título</li>
+        <li><strong>IOF</strong> (imposto sobre operações financeiras)</li>
+        <li><strong>Tarifas bancárias</strong></li>
+        <li><strong>Custos de registro</strong> em cartório</li>
+      </ol>
+
+      <div class="formula">
+        <strong>Valor_creditado = ΣN - D_comercial - IOF - Tarifas - Registros</strong>
+      </div>
+
+      <div class="exemplo">
+        <strong>📌 Questão 5 da prova:</strong>
+        <div class="passo">D_comercial = 412.500 × 0,035 × (60/30) = R$ 28.875</div>
+        <div class="passo">IOF = 412.500 × 0,00005 × 60 = R$ 1.237,50</div>
+        <div class="passo">Tarifa = R$ 120</div>
+        <div class="passo">Registro = 200 × R$ 2 = R$ 400</div>
+        <div class="passo">Valor_creditado = 412.500 - 28.875 - 1.237,50 - 120 - 400 = R$ 381.867,50</div>
+      </div>
+
+      <h3>4. Prazo Médio de um Conjunto de Títulos</h3>
+      <div class="conceito">
+        Quando há vários títulos com prazos diferentes, calcula-se o <strong>prazo médio ponderado</strong> pelo valor nominal.
+      </div>
+      <div class="formula">
+        <strong>n_médio = Σ(Nᵢ × nᵢ) / Σ(Nᵢ)</strong>
+      </div>
+
+      <div class="exemplo">
+        <strong>📌 Questão 5:</strong>
+        <div class="passo">n = (200.000×37 + 150.000×94 + 62.500×52) / 412.500</div>
+        <div class="passo">n = (7.400.000 + 14.100.000 + 3.250.000) / 412.500</div>
+        <div class="passo">n = 24.750.000 / 412.500 = 60 dias</div>
+      </div>
+    </section>
+
+    <!-- ============ UNIDADE IV ============ -->
+    <section class="card" id="u4">
+      <h2>📕 Unidade IV — Juros Compostos</h2>
+
+      <h3>1. Fórmula do Montante</h3>
+      <div class="formula">
+        <strong>M = C × (1 + i)^n</strong>
+      </div>
+
+      <p><strong>Fórmulas derivadas:</strong></p>
+      <div class="formula">
+        C = M / (1 + i)^n        (capital inicial / valor presente)<br>
+        i = (M/C)^(1/n) - 1      (taxa)<br>
+        n = ln(M/C) / ln(1+i)    (prazo)
+      </div>
+
+      <div class="exemplo">
+        <strong>📌 Exemplo:</strong> R$ 1.000 aplicados a 10% a.m. por 3 meses.
+        <div class="passo">M = 1.000 × (1,10)^3 = 1.000 × 1,331 = R$ 1.331</div>
+      </div>
+
+      <h3>2. Períodos Não Inteiros</h3>
+      <div class="conceito">
+        Quando o tempo não é inteiro (ex: 5,3 meses), há duas convenções:
+      </div>
+
+      <div class="comparacao">
+        <div class="simples">
+          <h4>🔹 Convenção Linear (mista)</h4>
+          <ul>
+            <li>Parte inteira → juros compostos</li>
+            <li>Parte fracionária → juros simples</li>
+          </ul>
+          <div class="formula">M = C × (1+i)^p × (1+i×q)</div>
+        </div>
+        <div class="composto">
+          <h4>🔹 Convenção Exponencial (pura)</h4>
+          <ul>
+            <li>Todo período em juros compostos</li>
+            <li>Mais usada no mercado</li>
+          </ul>
+          <div class="formula">M = C × (1+i)^n</div>
+        </div>
+      </div>
+
+      <div class="exemplo">
+        <strong>📌 Exemplo:</strong> C = 1.000, i = 10% a.m., n = 2,5 meses
+        <div class="passo">Linear: M = 1.000 × 1,10² × 1,05 = R$ 1.270,50</div>
+        <div class="passo">Exponencial: M = 1.000 × 1,10^2,5 = R$ 1.269,06</div>
+      </div>
+
+      <h3>3. Taxas Equivalentes (Juros Compostos)</h3>
+      <div class="formula">
+        <strong>(1 + i_eq) = (1 + i)^(t_eq / t)</strong>
+      </div>
+
+      <div class="exemplo">
+        <strong>📌 Exemplo:</strong> Taxa de 2% a.m. equivale a quanto ao ano?
+        <div class="passo">i_a.a. = (1,02)^12 - 1 = 1,2682 - 1 = 26,82% a.a.</div>
+      </div>
+
+      <div class="alerta">
+        ⚠️ <strong>NÃO é</strong> 2% × 12 = 24%. Isso seria juros simples!
+      </div>
+
+      <table>
+        <tr><th>Taxa mensal</th><th>Equivalente anual</th></tr>
+        <tr><td>1% a.m.</td><td>12,68% a.a.</td></tr>
+        <tr><td>2% a.m.</td><td>26,82% a.a.</td></tr>
+        <tr><td>5% a.m.</td><td>79,59% a.a.</td></tr>
+        <tr><td>10% a.m.</td><td>213,84% a.a.</td></tr>
+      </table>
+
+      <h3>4. CDB e RDB</h3>
+      <div class="conceito">
+        <strong>CDB (Certificado de Depósito Bancário):</strong> Título de renda fixa emitido por bancos. Nominativo e transferível.<br><br>
+        <strong>RDB (Recibo de Depósito Bancário):</strong> Similar ao CDB, mas intransferível.
+      </div>
+
+      <p><strong>IR regressivo:</strong></p>
+      <table>
+        <tr><th>Prazo</th><th>Alíquota IR</th></tr>
+        <tr><td>Até 180 dias</td><td>22,5%</td></tr>
+        <tr><td>181 a 360 dias</td><td>20%</td></tr>
+        <tr><td>361 a 720 dias</td><td>17,5%</td></tr>
+        <tr><td>Acima de 720 dias</td><td>15%</td></tr>
+      </table>
+
+      <h3>5. Valor Atual e Nominal em Juros Compostos</h3>
+      <div class="formula">
+        <strong>Valor Atual (PV):</strong> PV = FV / (1 + i)^n<br>
+        <strong>Valor Nominal (FV):</strong> FV = PV × (1 + i)^n
+      </div>
+
+      <h3>6. Compra à Vista vs. Compra a Prazo</h3>
+      <div class="conceito">
+        Quando uma loja oferece desconto à vista, há uma <strong>taxa de juros embutida</strong> na compra a prazo.
+      </div>
+      <div class="formula">
+        <strong>i = (FV/PV)^(1/n) - 1</strong><br>
+        <strong>d = i / (1 + i)</strong>
+      </div>
+
+      <div class="exemplo">
+        <strong>📌 Questão 4 da prova:</strong> À vista R$ 100 | a prazo (2 meses) R$ 103,50
+        <div class="passo">i = (103,5/100)^(1/2) - 1 = 1,735% a.m.</div>
+        <div class="passo">d = 0,01735 / 1,01735 = 1,705% a.m.</div>
+      </div>
+
+      <h3>7. Capitalização Composta com Taxas Variáveis</h3>
+      <div class="formula">
+        <strong>M = C × (1 + i₁) × (1 + i₂) × ... × (1 + iₙ)</strong>
+      </div>
+
+      <div class="exemplo">
+        <strong>📌 Exemplo:</strong> R$ 1.000 com taxas: 2%, 3%, 1,5% em 3 meses.
+        <div class="passo">M = 1.000 × 1,02 × 1,03 × 1,015 = R$ 1.066,21</div>
+      </div>
+
+      <h3>8. Taxa Acumulada de Hot Money</h3>
+      <div class="formula">
+        <strong>Fator_acumulado = (1 + i₁) × (1 + i₂) × ... × (1 + iₙ)</strong><br>
+        <strong>Taxa_acumulada = Fator_acumulado - 1</strong>
+      </div>
+
+      <h3>9. Operações em Dias Úteis e Taxa Over</h3>
+      <div class="conceito">
+        <span class="emoji-grande">📈</span><strong>Taxa Over:</strong> taxa diária (ou mensal convertida) usada em operações de mercado aberto. Calculada sobre <strong>dias úteis</strong>.
+      </div>
+
+      <div class="formula">
+        <strong>i_diária = (1 + i_mensal)^(1/30) - 1</strong>    (dias corridos)<br>
+        <strong>i_diária = (1 + i_mensal)^(1/21) - 1</strong>    (dias úteis)<br>
+        <strong>Fator = (1 + i_mensal)^(n_du / 21)</strong>
+      </div>
+
+      <div class="exemplo">
+        <strong>📌 Questão 3 da prova:</strong>
+        <div class="passo">a) R_bruto = [(1,035)^(3/30) × (1+i₂)^(2/30) - 1] × 100</div>
+        <div class="passo">b) R_líquido = R_bruto × (1 - 0,15)</div>
+        <div class="passo">c) i_a.a. = (1 + R_líquido)^(252/n_du) - 1</div>
+      </div>
+
+      <div class="dica">
+        💡 <strong>252 dias úteis</strong> é o padrão do mercado financeiro brasileiro para anualização.
+      </div>
+
+      <h3>10. Período da Taxa ≠ Período de Capitalização</h3>
+      <div class="alerta">
+        ⚠️ <strong>NUNCA</strong> divida a taxa por 12 em juros compostos! Use sempre a fórmula de taxa equivalente.
+      </div>
+
+      <div class="exemplo">
+        <strong>📌 Exemplo:</strong> Taxa 21% a.a., prazo 4 meses.
+        <div class="passo">i_mensal = (1,21)^(1/12) - 1 = 1,60% a.m.</div>
+        <div class="passo">M = C × (1,0160)^4</div>
+      </div>
+
+      <h3>11. Capitalização Contínua</h3>
+      <div class="conceito">
+        É o caso limite em que os juros são capitalizados <strong>infinitas vezes por período</strong>. Usa-se o número de Euler (e ≈ 2,71828).
+      </div>
+      <div class="formula">
+        <strong>M = C × e^(r × t)</strong>
+      </div>
+
+      <div class="exemplo">
+        <strong>📌 Exemplo:</strong> R$ 1.000 a 10% a.a. contínuos por 2 anos.
+        <div class="passo">M = 1.000 × e^(0,10 × 2) = 1.000 × 1,2214 = R$ 1.221,40</div>
+      </div>
+
+      <div class="dica">
+        💡 A capitalização contínua produz o <strong>maior montante possível</strong> para uma dada taxa nominal.
+      </div>
+    </section>
+
+    <!-- ============ UNIDADE V ============ -->
+    <section class="card" id="u5">
+      <h2>📔 Unidade V — Taxa Real de Juros</h2>
+
+      <h3>1. Índice de Preços</h3>
+      <div class="conceito">
+        É uma <strong>medida estatística</strong> que acompanha a variação dos preços de uma cesta de bens e serviços ao longo do tempo. É a base para calcular a inflação.
+      </div>
+      <div class="formula">
+        <strong>Índice = (Custo_cesta_atual / Custo_cesta_base) × 100</strong>
+      </div>
+
+      <h3>2. Taxa Acumulada</h3>
+      <div class="formula">
+        <strong>(1 + i_acum) = (1 + i₁) × (1 + i₂) × ... × (1 + iₙ)</strong>
+      </div>
+
+      <div class="exemplo">
+        <strong>📌 Exemplo:</strong> Inflação: jan=1%, fev=1,5%, mar=0,8%
+        <div class="passo">(1+i_acum) = 1,01 × 1,015 × 1,008 = 1,0333</div>
+        <div class="passo">i_acum = 3,33% no trimestre</div>
+      </div>
+
+      <div class="alerta">
+        ⚠️ <strong>Erro comum:</strong> 1% + 1,5% + 0,8% = 3,3% (ERRADO!)
+      </div>
+
+      <h3>3. Principais Índices de Inflação</h3>
+      <table>
+        <tr><th>Índice</th><th>Sigla</th><th>Quem calcula</th><th>Finalidade</th></tr>
+        <tr><td>Índice de Preços ao Consumidor Amplo</td><td>IPCA</td><td>IBGE</td><td>Inflação oficial (meta do governo)</td></tr>
+        <tr><td>Índice Geral de Preços - Mercado</td><td>IGP-M</td><td>FGV</td><td>Alugueis, contratos</td></tr>
+        <tr><td>Índice Nacional de Preços ao Consumidor</td><td>INPC</td><td>IBGE</td><td>Famílias de baixa renda</td></tr>
+        <tr><td>Índice de Preços por Atacado</td><td>IPA</td><td>FGV</td><td>Preços no atacado</td></tr>
+        <tr><td>Índice Nacional de Custo da Construção</td><td>INCC</td><td>FGV</td><td>Setor imobiliário</td></tr>
+      </table>
+
+      <h3>4. Taxa Real de Juros</h3>
+      <div class="conceito">
+        É a taxa que <strong>desconta a inflação</strong> do rendimento nominal. Mostra o <strong>ganho real de poder aquisitivo</strong>.
+      </div>
+
+      <div class="formula">
+        <strong>Fórmula de Fisher (exata):</strong><br>
+        (1 + i_real) = (1 + i_nominal) / (1 + inflação)<br><br>
+        <strong>Aproximação (Fisher simplificada):</strong><br>
+        i_real ≈ i_nominal - inflação
+      </div>
+
+      <div class="exemplo">
+        <strong>📌 Exemplo:</strong> Aplicação rende 12% a.a. e inflação foi 8% a.a.
+        <div class="passo">i_real = 1,12 / 1,08 - 1 = 0,0370 = 3,70% a.a.</div>
+      </div>
+
+      <div class="atencao">
+        💡 Se i_nominal < inflação, a taxa real é <strong>negativa</strong> (você perde poder aquisitivo mesmo "ganhando" juros).
+      </div>
+
+      <h3>5. Taxa de Referência (TR) e Caderneta de Poupança</h3>
+      <div class="conceito">
+        <strong>TR (Taxa Reference):</strong> taxa calculada pelo BACEN com base na média dos CDBs/RDBs.<br><br>
+        <strong>Regra da Caderneta de Poupança (atual):</strong>
+      </div>
+      <ul>
+        <li>Se <strong>Selic > 8,5% a.a.</strong> → rende <strong>TR + 0,5% ao mês</strong></li>
+        <li>Se <strong>Selic ≤ 8,5% a.a.</strong> → rende <strong>TR + 70% da Selic ao mês</strong></li>
+      </ul>
+
+      <div class="dica">
+        💡 A poupança é <strong>isenta de IR</strong> para pessoa física.
+      </div>
+
+      <h3>6. Notas do Tesouro Nacional - Série B Principal (NTN-B)</h3>
+      <div class="conceito">
+        São <strong>títulos públicos federais</strong> que pagam:
+      </div>
+      <div class="formula">
+        <strong>Rendimento = IPCA + taxa fixa (definida no leilão)</strong>
+      </div>
+
+      <p><strong>Características:</strong></p>
+      <ul>
+        <li>Protegem contra a inflação (são "indexados")</li>
+        <li>Pagam juros semestrais</li>
+        <li>Muito usados para aposentadoria e longo prazo</li>
+        <li>Investimento de <strong>baixo risco</strong> (risco soberano)</li>
+      </ul>
+
+      <div class="exemplo">
+        <strong>📌 Exemplo:</strong> NTN-B com IPCA + 5% a.a. Se inflação for 8% a.a.:
+        <div class="passo">Rendimento nominal = 8% + 5% = 13% a.a.</div>
+        <div class="passo">Rendimento real = 5% a.a. (garantido!)</div>
+      </div>
+
+      <h3>7. Poder Aquisitivo e Unidade de Referência</h3>
+      <div class="formula">
+        <strong>Poder_aquisitivo = Valor_nominal / Índice_de_preços</strong>
+      </div>
+
+      <p><strong>Unidades históricas no Brasil:</strong></p>
+      <ul>
+        <li><strong>URV (1994):</strong> usada no Plano Real, valia R$ 1,00</li>
+        <li><strong>UFIR:</strong> usada para multas e tributos</li>
+        <li><strong>OTN, ORTN, BTN, Bônus do Tesouro:</strong> planos antigos</li>
+      </ul>
+
+      <div class="exemplo">
+        <strong>📌 Exemplo:</strong> Salário de R$ 2.000 com IPCA acumulado de 10%
+        <div class="passo">Poder_aquisitivo_real = 2.000 / 1,10 = R$ 1.818,18</div>
+      </div>
+    </section>
+
+    <!-- ============ RESUMO ============ -->
+    <section class="card" id="resumo">
+      <h2>🎯 Resumo das Fórmulas Essenciais</h2>
+      <p>Use esta seção como base para sua <strong>folha de consulta A4</strong> da prova!</p>
+
+      <div class="resumo-box">
+        <h3>📐 JUROS SIMPLES</h3>
+        <div class="formula">
+          J = C × i × n<br>
+          M = C × (1 + i × n)
+        </div>
+
+        <h3>📈 JUROS COMPOSTOS</h3>
+        <div class="formula">
+          M = C × (1 + i)^n<br>
+          PV = FV / (1 + i)^n
+        </div>
+
+        <h3>🔄 TAXAS EQUIVALENTES</h3>
+        <div class="formula">
+          Simples:  i₁/t₁ = i₂/t₂<br>
+          Compostos: i_eq = (1+i)^(t_eq/t) - 1
+        </div>
+
+        <h3>💸 DESCONTO COMERCIAL</h3>
+        <div class="formula">
+          D = N × d × n<br>
+          A = N × (1 - d × n)<br>
+          i = d / (1 - d × n)
+        </div>
+
+        <h3>📊 TAXA REAL (Fisher)</h3>
+        <div class="formula">
+          (1 + i_real) = (1 + i_nom) / (1 + inf)
+        </div>
+
+        <h3>⏱️ PRAZO MÉDIO</h3>
+        <div class="formula">
+          n_médio = Σ(Nᵢ × nᵢ) / Σ(Nᵢ)
+        </div>
+
+        <h3>♾️ CAPITALIZAÇÃO CONTÍNUA</h3>
+        <div class="formula">
+          M = C × e^(r×t)
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROVA ============ -->
+    <section class="card" id="prova">
+      <h2>📝 Resolução Comentada da Prova</h2>
+
+      <h3><span class="numero-questao">1</span> Igualdade de Montantes (1,5 pt)</h3>
+      <div class="exemplo">
+        <p>4.200 a 7% a.m. e 5.250 a 3,5% a.m.</p>
+        <div class="passo">4.200(1+0,07n) = 5.250(1+0,035n)</div>
+        <div class="passo">4.200 + 294n = 5.250 + 183,75n</div>
+        <div class="passo">110,25n = 1.050 → n = 9,52 meses</div>
+        <div class="passo">Parte inteira: 9 meses</div>
+        <div class="passo">Fracionária: 0,52 × 30 = 15,6 → 16 dias</div>
+        <p><strong>✅ Resposta: 9 meses e 16 dias</strong></p>
+      </div>
+
+      <h3><span class="numero-questao">2</span> Hot Money (1,5 pt)</h3>
+      <div class="exemplo">
+        <p>3 dias a 3,5% a.m. + 2 dias a 4,5% a.m. + IOF 0,0041% a.d.</p>
+        <div class="passo">a) i = (3,5%×3 + 4,5%×2)/30 = 19,5/30 = 0,65%</div>
+        <div class="passo">b) IOF = 0,0041%×5 = 0,0205% → 0,6705%</div>
+        <div class="passo">c) (1,006705)^(30/5) - 1 ≈ 4,10% a.m.</div>
+      </div>
+
+      <h3><span class="numero-questao">3</span> Aplicação em Dias Úteis (1,5 pt)</h3>
+      <div class="exemplo">
+        <p>3 d.u. a 3,5% a.m. + 2 d.u. a (1+NR)% a.m. + IR 15%</p>
+        <div class="passo">a) R_bruto = [(1,035)^(3/30) × (1+i₂)^(2/30) - 1] × 100</div>
+        <div class="passo">b) R_líquido = R_bruto × 0,85</div>
+        <div class="passo">c) i_a.a. = (1 + R_líquido)^(252/5) - 1</div>
+      </div>
+
+      <h3><span class="numero-questao">4</span> Desconto em Venda a Prazo (1,5 pt)</h3>
+      <div class="exemplo">
+        <p>À vista = 100 | A prazo (2 meses) = 103,5</p>
+        <div class="passo">i_financ = (103,5/100)^(1/2) - 1 = 1,735% a.m.</div>
+        <div class="passo">d = i/(1+i) = 1,735/1,01735 = 1,705% a.m.</div>
+        <p><strong>✅ Resposta: d = 1,705% a.m.</strong></p>
+      </div>
+
+      <h3><span class="numero-questao">5</span> Conjunto de Títulos (4,0 pts)</h3>
+      <div class="exemplo">
+        <p><strong>Prazo médio:</strong></p>
+        <div class="passo">n = (200.000×37 + 150.000×94 + 62.500×52) / 412.500</div>
+        <div class="passo">n = 24.750.000 / 412.500 = 60 dias</div>
+
+        <p><strong>a) Valor creditado:</strong></p>
+        <div class="passo">D_com = 412.500 × 3,5% × (60/30) = 28.875</div>
+        <div class="passo">IOF = 412.500 × 0,005% × 60 = 1.237,50</div>
+        <div class="passo">Tarifa = 120 | Registro = (120+80)×2 = 400</div>
+        <div class="passo">Valor = 412.500 - 28.875 - 1.237,50 - 120 - 400 = R$ 381.867,50</div>
+
+        <p><strong>b) Taxa de desconto efetiva:</strong></p>
+        <div class="passo">d = (28.875+1.237,50+120+400)/412.500 / (60/30) = 7,41% a.m.</div>
+
+        <p><strong>c) Taxa composta anual:</strong></p>
+        <div class="passo">i = (412.500/381.867,50)^(360/60) - 1</div>
+
+        <p><strong>d) Taxa over:</strong></p>
+        <div class="passo">Prazo real = 60 × (3/2) = 90 dias corridos</div>
+        <div class="passo">taxa_over = (412.500/381.867,50)^(1/90) - 1</div>
+      </div>
+    </section>
+
+    <!-- ============ DICAS ============ -->
+    <section class="card" id="dicas">
+      <h2>💡 Dicas Finais para a Prova</h2>
+
+      <div class="dica">
+        <span class="tag tag-vermelho">1</span> <strong>Sempre desenhe o fluxo de caixa</strong> antes de calcular.
+      </div>
+
+      <div class="dica">
+        <span class="tag tag-vermelho">2</span> <strong>Verifique as unidades</strong>: taxa em % a.m. com prazo em dias? Converta!
+      </div>
+
+      <div class="dica">
+        <span class="tag tag-laranja">3</span> <strong>Ano comercial = 360 dias</strong> | <strong>Ano exato = 365 dias</strong> | <strong>Ano útil = 252 dias</strong>
+      </div>
+
+      <div class="dica">
+        <span class="tag tag-laranja">4</span> <strong>Em juros compostos</strong>, NUNCA divida a taxa. Use taxa equivalente.
+      </div>
+
+      <div class="dica">
+        <span class="tag tag-verde">5</span> <strong>Desconto "por fora"</strong> (comercial) é calculado sobre o valor NOMINAL.
+      </div>
+
+      <div class="dica">
+        <span class="tag tag-verde">6</span> <strong>IOF</strong> é sempre calculado sobre o valor nominal × dias.
+      </div>
+
+      <div class="dica">
+        <span class="tag tag-verde">7</span> <strong>Taxa real</strong> sempre usa a fórmula de Fisher (não subtraia direto, a não ser que peça aproximação).
+      </div>
+
+      <div class="dica">
+        <span class="tag tag-vermelho">8</span> <strong>Leia com atenção</strong>: "taxa de desconto" ≠ "taxa de juros".
+      </div>
+
+      <div class="resumo-box">
+        <h3>🎓 Lembre-se da Folha de Consulta!</h3>
+        <p>Você pode levar <strong>1 folha A4</strong> com anotações manuscritas. Não esqueça de colocar:</p>
+        <ul>
+          <li>✅ Seu nome</li>
+          <li>✅ Sua matrícula</li>
+          <li>✅ Fórmulas principais</li>
+          <li>✅ Tabelas úteis (IR, dias do ano, índices)</li>
+        </ul>
+      </div>
+
+      <div style="text-align: center; margin-top: 30px;">
+        <a href="#" class="topo-btn">⬆ Voltar ao Topo</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer style="background: rgba(0,0,0,0.5); color: white; padding: 30px 20px; text-align: center; margin-top: 40px;">
+  <p><strong>📊 Matemática Financeira Aplicada</strong></p>
+  <p>Prof. Rildo E Silva | CCA0153 | 2º Semestre 2025</p>
+  <p style="margin-top: 10px; opacity: 0.8;">Feito com 💙 para seus estudos</p>
+</footer>
+
+<script>
+  // Rolagem suave
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Botão voltar ao topo
+  document.querySelector('.topo-btn').addEventListener('click', e => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+</body>
+</html>
